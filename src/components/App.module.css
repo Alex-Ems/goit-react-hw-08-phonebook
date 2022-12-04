@@ -1,0 +1,11 @@
+.container {
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.titleContacts, .titlePhonebook, .description {
+  text-align: center;
+}
