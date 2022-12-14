@@ -1,0 +1,8 @@
+.titleContacts, .titlePhonebook, .description {
+  text-align: center;
+}
+.titleContacts, .titlePhonebook {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 48px;
+}

@@ -1,23 +1,26 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addContacts } from 'redux/Contacts/operations';
+import { nanoid } from 'nanoid';
+import { toast } from 'react-toastify';
+import { addContact } from 'redux/Contacts/operations';
+import { useSelector, useDispatch } from 'react-redux';
 
 import css from './ContactForm.module.css';
 
-export default function FormContacts() {
+export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-
   const contacts = useSelector(state => state.contacts.contacts);
   const dispatch = useDispatch();
 
-  const handleChange = evt => {
-    const { name, value } = evt.target;
+
+  const handleChange = e => {
+    const { name, value } = e.target;
+
     switch (name) {
-      case 'name':
+      case 'contactName':
         setName(value);
         break;
-      case 'number':
+      case 'contactNumber':
         setNumber(value);
         break;
       default:
@@ -25,35 +28,34 @@ export default function FormContacts() {
     }
   };
 
-  const handleSubmit = evt => {
-    evt.preventDefault();
+  const handleSubmit = e => {
+    e.preventDefault();
 
-    const contactFilter = contacts?.some(
-      contact => contact.name.toLowerCase() === name.toLowerCase()
-    );
-
-    if (contactFilter) {
-      alert(`${name} is already in contacts.`);
-      return;
+    if (
+      contacts?.find(
+        contact => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase()
+      )
+    ) {
+      return toast.error(`${name} is already in Phonebook`);
     }
-
-    const user = { name, number };
-    console.log(user);
-
-    dispatch(addContacts(user));
+    dispatch(addContact({ name, number }));
     setName('');
     setNumber('');
   };
 
+  const nameId = nanoid();
+  const numberId = nanoid();
+
   return (
-    <>
+    <div className={css.container}>
       <form className={css.formStyles} onSubmit={handleSubmit}>
         <label className={css.labelStyles}>
           Name
           <input
+            id={nameId}
             className={css.inputStyles}
             type="text"
-            name="name"
+            name="contactName"
             value={name}
             onChange={handleChange}
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -65,9 +67,10 @@ export default function FormContacts() {
         <label className={css.labelStyles}>
           Number
           <input
+            id={numberId}
             className={css.inputStyles}
             type="tel"
-            name="number"
+            name="contactNumber"
             value={number}
             onChange={handleChange}
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -80,6 +83,6 @@ export default function FormContacts() {
           Add contact
         </button>
       </form>
-    </>
+    </div>
   );
-}
+};

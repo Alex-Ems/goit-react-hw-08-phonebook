@@ -1,3 +1,11 @@
+.container {
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 .listContacts {
   padding: 15px;
   display: flex;
@@ -23,6 +31,7 @@
   color: black;
   border: 2px solid #e9bb03;
   transition: all 250ms linear;
+  border-radius: 5px;
 }
 
 .btnDelete:hover,
@@ -31,4 +40,5 @@
   transform: scale(1.12);
   box-shadow: 0 0 10px 0 red inset, 0 0 10px 4px grey;
   border-color: black;
+  border-radius: 5px;
 }

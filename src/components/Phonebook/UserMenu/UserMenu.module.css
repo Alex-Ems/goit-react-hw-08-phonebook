@@ -1,0 +1,57 @@
+.navigate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 20px 20px 0;
+}
+
+.userNav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 500px;
+}
+
+.loginNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 500px;
+}
+
+.link {
+  padding: 12px;
+  width: 120px;
+  cursor: pointer;
+  background-color: #eef389;
+  border: 2px solid #e9bb03;
+  border-radius: 25px;
+  outline: none;
+  color: black;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 250ms linear;
+  text-align: center;
+  text-decoration: none;
+}
+
+.link.active {
+  background-color: #e9bb03;
+  border: 2px solid #eef389;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px 0 white inset, 0 0 10px 4px #7ec5f8;
+}
+
+.link:hover,
+.link:focus {
+  background-color: #e9bb03;
+  border: 2px solid #eef389;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px 0 white inset, 0 0 10px 4px #7ec5f8;
+}
+
+
+.greeting {
+  margin: 0 20px 0 auto;
+}
